@@ -1,12 +1,7 @@
-import { join } from "path";
-import { projects } from "./public/data/projects-data.js";
-
-const PORT = process.env.PORT || 3000;
-
-console.log("Projects loaded:", projects);
+import { projects } from "../data/projects-data.js";
 
 // ── HTML shell ──────────────────────────────────────────────
-function shell(title, body) {
+export function shell(title, body) {
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -30,7 +25,7 @@ function shell(title, body) {
 }
 
 // ── Projects list page ──────────────────────────────────────
-function renderProjectsList() {
+export function renderProjectsList() {
   if (!projects || projects.length === 0) {
     return shell("Projects", `<h1>No projects found</h1>`);
   }
@@ -74,7 +69,7 @@ function renderProjectsList() {
 }
 
 // ── Single project page ─────────────────────────────────────
-function renderProject(id) {
+export function renderProject(id) {
   const project = projects.find((p) => String(p.id) === String(id));
 
   if (!project) {
@@ -122,45 +117,3 @@ function renderProject(id) {
     ),
   };
 }
-
-// ── Server ──────────────────────────────────────────────────
-Bun.serve({
-  port: PORT,
-  async fetch(req) {
-    const url = new URL(req.url);
-    const pathname = url.pathname;
-
-    if (pathname === "/projects" || pathname === "/projects/") {
-      return new Response(renderProjectsList(), {
-        headers: { "Content-Type": "text/html" },
-      });
-    }
-
-    if (pathname === "/project") {
-      const id = url.searchParams.get("id");
-      const { status, html } = renderProject(id);
-      return new Response(html, {
-        status,
-        headers: { "Content-Type": "text/html" },
-      });
-    }
-
-    // Static files
-    let filePath = pathname === "/" ? "/index.html" : pathname;
-    const file = Bun.file(join(import.meta.dir, "public", filePath));
-
-    if (await file.exists()) {
-      return new Response(file);
-    }
-
-    // Fallback to index.html
-    const fallback = Bun.file(join(import.meta.dir, "public", "index.html"));
-    if (await fallback.exists()) {
-      return new Response(fallback, { status: 200 });
-    }
-
-    return new Response("Not Found", { status: 404 });
-  },
-});
-
-console.log(`Server running on http://localhost:${PORT}`);
