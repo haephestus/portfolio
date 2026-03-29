@@ -1,4 +1,4 @@
-import { renderProjectsList, renderProject } from "./public/lib/render.js";
+import { renderProjectsList, renderProject } from "./lib/render.js";
 import { join } from "path";
 
 Bun.serve({
