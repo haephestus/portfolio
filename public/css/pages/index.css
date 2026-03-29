@@ -1,0 +1,51 @@
+@import '../struct/colors.css'; 
+@import '../fonts/fonts.css';
+
+.about {
+  color: black;
+  overflow: hidden;
+  text-align: center;
+  font-family: "Republica";
+  transform: translate(0, -50%); 
+  background-color: var(--burgundy);
+}
+
+.about img {
+  height: auto;
+  z-index: 1;
+  max-width: 100%;  
+  margin-top: 15%;
+  margin-left: 25%;
+  transform: scale(1.35);
+}
+
+.blog { 
+  right: 33%;
+  color: black;
+  text-align: center;
+  font-family: "Republica";
+  transform: translate(40%, 20%);
+  background-color: var(--mustard);
+}
+
+.art {
+  left: 17%; 
+  color: black;
+  text-align: center;
+  font-family: "Republica";
+  background-color: var(--teal);
+  transform: translate(-40%, 20%);
+}
+
+.projects {
+  left: 42%;
+  color: black;
+  text-align: center;
+  font-family: "Republica";
+  background-color: var(--sage);
+  transform: translate(-50%, -30%);
+}
+
+.index-page {
+  background-color: black;
+}

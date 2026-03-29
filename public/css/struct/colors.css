@@ -1,0 +1,22 @@
+:root {
+  --teal: #004d4d;
+  --sage: #445a3c;
+  --mustard: #9b7104;
+  --burgundy: #591a29;
+}
+
+.filter-teal {
+ filter: invert(18%) sepia(56%) saturate(1256%) hue-rotate(142deg) brightness(105%) contrast(102%);
+}
+
+.filter-sage {
+ filter: invert(29%) sepia(8%) saturate(1940%) hue-rotate(59deg) brightness(94%) contrast(79%);
+}
+
+.filter-mustard {
+ filter: invert(42%) sepia(19%) saturate(3367%) hue-rotate(18deg) brightness(97%) contrast(97%);
+}
+
+.filter-burgundy {
+ filter: invert(13%) sepia(14%) saturate(6982%) hue-rotate(316deg) brightness(96%) contrast(95%);
+}

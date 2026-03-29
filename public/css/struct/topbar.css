@@ -1,0 +1,223 @@
+/* ═══════════════════════════════════════════════
+   Shared topbar — art, blog, projects pages
+   ═══════════════════════════════════════════════ */
+.topbar {
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  padding-left: 55px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.topbar img {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  margin: 0;
+}
+
+.topbar a {
+  font-size: 14px;
+  margin-left: 24px;
+  text-decoration: none;
+  font-family: "Republica";
+  transition: color 0.3s ease;
+}
+
+/* Per-page accent colors */
+.art-page .topbar a {
+  color: var(--teal);
+}
+.art-page .topbar a:hover {
+  color: var(--mustard);
+}
+
+.blog-page .topbar a {
+  color: var(--mustard);
+}
+.blog-page .topbar a:hover {
+  color: var(--teal);
+}
+
+.projects-page .topbar a {
+  color: var(--sage);
+}
+.projects-page .topbar a:hover {
+  color: var(--mustard);
+}
+
+/* ═══════════════════════════════════════════════
+   About page — holder morphs into topbar
+   ═══════════════════════════════════════════════ */
+
+/* profile-nav matches topbar layout exactly */
+.profile-nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease 0.2s;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding-left: 55px;
+}
+
+.profile-nav a {
+  font-size: 14px;
+  margin-left: 24px;
+  color: var(--burgundy);
+  text-decoration: none;
+  font-family: "Republica";
+  transition: color 0.3s ease;
+}
+
+.profile-nav a:hover {
+  color: var(--mustard);
+}
+
+/* Centered icon inside profile — hidden by default, shown when sticky */
+.profile .topbar-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease 0.2s;
+  z-index: 11;
+}
+
+.holder.sticky .profile .topbar-icon {
+  opacity: 1;
+}
+
+/* holder becomes topbar on sticky */
+.holder.sticky {
+  position: sticky;
+  top: 0;
+  height: 12vh;
+  padding-bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  will-change: height, background-color;
+  transition:
+    height 0.5s ease-out,
+    padding 0.5s ease-out,
+    background-color 0.5s ease-out;
+}
+
+.holder.sticky .profile {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  transform: translateY(0);
+  border-radius: 0;
+  background-color: transparent;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: visible;
+  border: none;
+}
+
+.holder.sticky .profile img:not(.topbar-icon) {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.holder.sticky .profile-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ═══════════════════════════════════════════════
+   Backdrop — shared across blog & projects
+   ═══════════════════════════════════════════════ */
+.backdrop {
+  width: 100%;
+  height: 45vh;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#backdrop {
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  object-position: center top;
+}
+
+.backdrop::before {
+  top: 0;
+  left: 0;
+  z-index: 1;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.backdrop-content {
+  z-index: 2;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.backdrop-icon {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  transform: translateY(-135%);
+}
+
+/* Blog backdrop text */
+.blog-page .backdrop h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: var(--mustard);
+  font-family: "Fascinate";
+}
+.blog-page .backdrop h4 {
+  font-size: 1.5rem;
+  margin: 10px 0 0 0;
+  color: var(--mustard);
+  font-family: "Republica";
+}
+
+/* Projects backdrop text */
+.projects-page .backdrop h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: var(--sage);
+  font-family: "Fascinate";
+}
+.projects-page .backdrop h4 {
+  font-size: 1.5rem;
+  margin: 10px 0 0 0;
+  color: var(--sage);
+  font-family: "Republica";
+}

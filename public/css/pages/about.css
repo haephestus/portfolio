@@ -1,0 +1,386 @@
+@import "../struct/colors.css";
+
+.about-page {
+  background-color: black;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Holder ── */
+.holder {
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  overflow: visible;
+  align-items: center;
+  padding-bottom: 20vh;
+  background: transparent;
+  justify-content: center;
+  position: relative;
+  z-index: 1000;
+  will-change: height, background-color;
+  transition:
+    height 0.5s ease-out,
+    padding 0.5s ease-out,
+    background-color 0.5s ease-out,
+    backdrop-filter 0.5s ease-out;
+}
+
+/* ── Profile pill ── */
+.profile {
+  position: relative;
+  width: 20%;
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  transform: translateY(22%);
+  background-color: var(--burgundy);
+  height: clamp(150px, 40vh, 300px);
+  border-radius: 0px 0px 200px 200px;
+  will-change: width, height, border-radius, transform;
+  transition:
+    width 0.5s ease-out,
+    height 0.5s ease-out,
+    border-radius 0.5s ease-out,
+    transform 0.5s ease-out,
+    background-color 0.5s ease-out,
+    overflow 0.5s ease-out;
+}
+
+.profile .profile-img {
+  opacity: 1;
+  width: 280px;
+  height: 300px;
+  object-fit: cover;
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+/* ── Nav links injected into profile ── */
+.profile-nav {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease 0.2s;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  padding-left: 55px;
+}
+
+.profile-nav a {
+  font-size: 14px;
+  margin-left: 24px;
+  color: var(--burgundy);
+  text-decoration: none;
+  font-family: "Republica";
+  transition: color 0.3s ease;
+}
+
+.profile-nav a:hover {
+  color: var(--mustard);
+}
+
+/* ── Fixed topbar state — position:fixed avoids scrollY feedback loop ── */
+.holder.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18vh;
+  padding-bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1000;
+}
+
+.holder.sticky .profile {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  transform: translateY(0);
+  border-radius: 0;
+  background-color: transparent;
+  flex-direction: row;
+  justify-content: flex-start;
+  overflow: visible;
+  border: none;
+}
+
+.holder.sticky .profile .profile-img {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+/* topbar-icon hidden by default, shown when sticky */
+.profile .topbar-icon {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease 0.2s;
+  z-index: 11;
+}
+
+.holder.sticky .profile .topbar-icon {
+  opacity: 1;
+}
+
+.holder.sticky .profile-nav {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Side scrollspy nav ── */
+#nav-list {
+  top: 50%;
+  right: 0;
+  z-index: 999;
+  width: 126px;
+  font-size: 12px;
+  position: fixed;
+  font-family: "Republica";
+  transform: translateY(-50%);
+  transition: opacity 0.3s ease;
+}
+
+#nav-list .list-group-item {
+  color: white;
+  border-color: rgba(255, 255, 255, 0);
+  background-color: rgba(90, 58, 58, 0);
+}
+
+#nav-list .list-group-item:hover {
+  color: var(--sage);
+}
+#nav-list .list-group-item.active {
+  color: var(--mustard);
+  font-family: "Republica";
+}
+
+/* ── Text sections ── */
+#words {
+  width: 30%;
+  height: 50%;
+  margin-left: 6%;
+  color: var(--sage);
+  font-family: "Fascinate";
+  transform: translateY(120%);
+}
+
+#full {
+  width: 50%;
+  height: 80%;
+  font-size: 28px;
+  margin-left: 39%;
+  font-family: "Caveat";
+  color: var(--mustard);
+  transform: translateY(-15%);
+}
+
+.section {
+  margin-top: 10vh;
+  min-height: 40vh;
+}
+
+.section h1 {
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  border-radius: 8px;
+  color: var(--mustard);
+  font-family: "Republica";
+}
+
+.section p {
+  width: 90%;
+  justify-content: center;
+  color: white;
+  line-height: 1.6;
+}
+
+/* ── Timeline ── */
+.timeline {
+  position: relative;
+  height: 115vh;
+  width: 100%;
+  background: #121212;
+}
+
+.timeline::before {
+  content: "";
+  top: 0;
+  left: 50%;
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background-color: white;
+}
+
+.tl-itm {
+  position: absolute;
+  border: 3px solid;
+  width: 35vw;
+  height: 30vh;
+  border-radius: 12px;
+  background-color: transparent;
+  color: white;
+  opacity: 0;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.tl-itm:nth-child(odd) {
+  transform: translateX(-40px);
+}
+.tl-itm:nth-child(even) {
+  transform: translateX(40px);
+}
+.tl-itm.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.tl-itm h3 {
+  font-family: "Caveat";
+  margin-top: 3%;
+  margin-left: 2%;
+}
+.tl-itm h4 {
+  margin-left: 2%;
+  font-family: "Caveat";
+}
+.tl-itm ul li {
+  font-size: 20px;
+  font-family: "Caveat";
+}
+
+.tl-itm:nth-child(1) {
+  color: var(--teal);
+  top: 5vh;
+  left: 10%;
+  border-color: var(--teal);
+}
+.tl-itm:nth-child(2) {
+  color: var(--sage);
+  top: 30vh;
+  left: 55%;
+  border-color: var(--sage);
+}
+.tl-itm:nth-child(3) {
+  color: var(--teal);
+  top: 55vh;
+  left: 10%;
+  border-color: var(--teal);
+}
+.tl-itm:nth-child(4) {
+  color: var(--sage);
+  top: 80vh;
+  left: 55%;
+  border-color: var(--sage);
+}
+
+/* ── Project card ── */
+.project {
+  position: relative;
+  width: 15vw;
+  height: 35vh;
+  margin-left: 10%;
+  border-radius: 15px;
+  background-color: var(--teal);
+}
+
+.project p {
+  top: 5%;
+  opacity: 0;
+  margin-left: 5%;
+  position: absolute;
+  text-align: center;
+}
+.project h4 {
+  top: 5%;
+  margin-left: 17%;
+  position: absolute;
+  text-align: center;
+}
+.project img {
+  top: 10px;
+  width: 100%;
+  height: 85%;
+  position: absolute;
+  border-radius: 15px;
+  transform: translateY(15%);
+}
+
+.project:hover img {
+  z-index: 1;
+  height: 101%;
+  transform: translateY(-5%);
+  filter: blur(4px) brightness(0.2);
+}
+.project:hover p {
+  opacity: 1;
+  z-index: 2;
+}
+.project:hover h4 {
+  opacity: 0;
+}
+
+/* ── Footer ── */
+.footer {
+  height: 70vh;
+  color: white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to bottom, black, var(--teal));
+}
+
+.footer p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+.socials {
+  display: flex;
+}
+.socials a img {
+  filter: brightness(0) invert(1);
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+.socials a:hover img {
+  transform: scale(1.2);
+  filter: brightness(1.2);
+}
+
+#github {
+  width: 40px;
+  height: 40px;
+}
+#linkedin {
+  width: 60px;
+  height: 60px;
+  transform: translateY(-18%);
+}
+#gmail {
+  width: 60px;
+  height: 60px;
+  transform: translateY(-18%);
+}

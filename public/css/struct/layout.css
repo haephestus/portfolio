@@ -1,0 +1,82 @@
+@import '../struct/colors.css';
+
+.body {
+  background-color: black;
+}
+
+.box {
+  width: 40%;
+  height: 32%;
+  bottom: 21%;
+  position: absolute;
+  border-radius: 25px;
+}
+
+.boxHorizontal {
+  top: 25%;
+  width: 82%;
+  height: 36%;
+  position: absolute;
+  border-radius: 25px;
+}
+
+.boxVertical {
+  top: 50%;
+  width: 20%;
+  height: 70%;
+  margin-left: 9%;
+  position: fixed;
+  border-radius: 25px;
+}
+
+.container {
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
+  background-color: transparent;
+}
+
+.container2 {
+  right: 0;
+  width: 93.5%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  background-color: transparent;
+}
+
+.container-right {
+  height: 100%;
+  margin-left: 0%;
+  position: relative;
+  background-color: transparent;
+}
+
+.navbar {
+  width: 98%;
+  height: 10%;
+  margin-left: 1%;
+  position: sticky;
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+ .split-right {
+  top: 0;
+  right: 0;
+  width: 70%;
+  height: 100%;
+  position: fixed;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+.scrollbar {
+  top: 1%;
+  width: 5%;
+  height: 98%;
+  position: fixed;
+  margin-left: 0.3%;
+  border-radius: 15px;
+  background-color: var(--burgundy);
+}

@@ -1,0 +1,7 @@
+.vertical-text {
+  margin: 0;
+  padding:0;
+  letter-spacing: 0.2;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+}
